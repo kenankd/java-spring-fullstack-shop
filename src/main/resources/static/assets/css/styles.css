@@ -18,6 +18,9 @@ h2 {
   color: #333;
   margin-bottom: 20px;
 }
+.registration-link {
+  text-decoration: underline;
+}
 
 /* Style form elements */
 .form-group {
@@ -32,7 +35,8 @@ label {
 }
 
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="text"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
