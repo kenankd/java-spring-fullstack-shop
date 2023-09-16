@@ -1,0 +1,58 @@
+/* login-form.css */
+
+/* Style the login container */
+.login-container {
+  width: 30%;
+  height: 60%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top:50px;
+}
+
+/* Style the heading */
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Style form elements */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  color: #555;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+/* Style the login button */
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50; /* Change this color as desired */
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.login-button:hover {
+  background-color: #45a049; /* Change this color as desired */
+}

@@ -24,4 +24,9 @@ public class HomeController {
     public String showShop(){
         return "shop";
     }
+
+    @RequestMapping("/login")
+    public String showLogin(){
+        return "login";
+    }
 }
