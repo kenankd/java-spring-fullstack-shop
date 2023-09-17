@@ -1,5 +1,6 @@
 package com.greenleaf.shop.config;
 
+import com.greenleaf.shop.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
