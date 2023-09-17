@@ -71,18 +71,21 @@
 <div class="container">
   <div class="login-container">
     <h2>Register</h2>
-    <form class="login-form">
+    <ul>
+      <li class="alert alert-danger" role="alert" th:each="error: ${#fields.errors('user.*')}" th:text="${error}"></li>
+    </ul>
+    <form class="login-form" method="post" th:action="@{/registerUser}" th:object="${user}">
       <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" class="login-input" placeholder="Enter your name">
+        <label>Name</label>
+        <input type="text" th:field="*{name}" class="login-input" placeholder="Enter your name">
       </div>
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" class="login-input" placeholder="Enter your email">
+        <label>Email</label>
+        <input type="email" th:field="*{email}" class="login-input" placeholder="Enter your email">
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" class="login-input" placeholder="Enter your password">
+        <label>Password</label>
+        <input type="password" th:field="*{password}" class="login-input" placeholder="Enter your password">
       </div>
       <button type="submit" class="login-button">Register</button>
     </form>

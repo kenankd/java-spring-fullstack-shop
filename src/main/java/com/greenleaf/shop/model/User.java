@@ -3,6 +3,9 @@ package com.greenleaf.shop.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +27,16 @@ public class User implements UserDetails {
     @GeneratedValue
     private Integer id;
 
+    @NotBlank(message="Name must not be blank")
+    @Size(max=20,message="Name cant be more than 20 characters long")
     private String name;
 
+    @NotBlank(message="Email must not be blank")
+    @Email(message="Please provide a valid email address")
     private String email;
 
+    @NotBlank(message="Password must not be blank")
+    @Size(min=5,max=15,message="Password must be between 5 and 15 characters long")
     private String password;
 
     @Override
