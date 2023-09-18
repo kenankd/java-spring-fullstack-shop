@@ -1,5 +1,4 @@
-/* login-form.css */
-
+@charset 'UTF-8';
 /* Style the login container */
 .login-container {
   width: 30%;
@@ -18,9 +17,9 @@ h2 {
   color: #333;
   margin-bottom: 20px;
 }
-.registration-link {
+/*.registration-link {
   text-decoration: underline;
-}
+}*/
 
 /* Style form elements */
 .form-group {

@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/templatemo.css">
-  <link rel="stylesheet" href="assets/css/custom.css">
-
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/templatemo.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
+  <link rel="stylesheet" th:href="@{/assets/css/styles.css}">
   <!-- Load fonts style after rendering the layout styles -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-  <link rel="stylesheet" href="assets/css/fontawesome.min.css">
-  <link rel="stylesheet" href="assets/css/styles.css"> <!-- Include the CSS file -->
+
   <title>Login</title>
 </head>
 <body>
@@ -50,19 +50,16 @@
       <div class="flex-fill">
         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/home}">Home</a>
+            <a class="nav-link" th:href="@{/greenleaf/home}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/about}">About</a>
+            <a class="nav-link" th:href="@{/greenleaf/about}">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/shop}">Shop</a>
+            <a class="nav-link" th:href="@{/greenleaf/shop}">Shop</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/contact}">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/login}">Log In</a>
+            <a class="nav-link" th:href="@{/greenleaf/contact}">Contact</a>
           </li>
         </ul>
       </div>
@@ -74,7 +71,7 @@
     <ul>
       <li class="alert alert-danger" role="alert" th:each="error: ${#fields.errors('user.*')}" th:text="${error}"></li>
     </ul>
-    <form class="login-form" method="post" th:action="@{/registerUser}" th:object="${user}">
+    <form class="login-form" method="post" th:action="@{/greenleaf/register/user}" th:object="${user}">
       <div class="form-group">
         <label>Name</label>
         <input type="text" th:field="*{name}" class="login-input" placeholder="Enter your name">
@@ -89,7 +86,7 @@
       </div>
       <button type="submit" class="login-button">Register</button>
     </form>
-    <p>Registered already? <a class="registration-link" th:href="@{/login}">Log in</a></p>
+    <p>Registered already? <a class="registration-link" th:href="@{/greenleaf/login}">Log in</a></p>
   </div>
 </div>
 </body>
