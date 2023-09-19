@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -28,8 +29,8 @@ public class SecurityConfig {
                 .requestMatchers( "/assets/css/**").permitAll());
         http.formLogin(form -> form
                 .loginPage("/greenleaf/login").permitAll().defaultSuccessUrl("/greenleaf/home"));
-        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
-       http.authenticationProvider(authenticationProvider);
+        //http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
+        http.authenticationProvider(authenticationProvider).httpBasic(Customizer.withDefaults());
         return http.build();
     }
 }

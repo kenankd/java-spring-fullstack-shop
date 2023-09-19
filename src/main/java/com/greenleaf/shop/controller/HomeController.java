@@ -1,6 +1,9 @@
 package com.greenleaf.shop.controller;
 
+import com.greenleaf.shop.dto.LoginRequest;
 import com.greenleaf.shop.model.User;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
     @RequestMapping(value = {"/home","","/"})
     public String showHome(){
+        var b= SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return "index";
     }
     @RequestMapping("/about")
@@ -30,7 +34,8 @@ public class HomeController {
     }
 
     @RequestMapping("/login")
-    public String showLogin(){
+    public String showLogin(Model model){
+        model.addAttribute("loginrequest",new LoginRequest());
         return "login";
     }
 

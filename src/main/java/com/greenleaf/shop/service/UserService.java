@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,10 @@ public class UserService {
     }
 
     public void authenticate(String email, String password) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email,password));
+        var authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email,password));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        var b= SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var a=10;
         //var user = userRepository.findByEmail(email).orElseThrow();
     }
 }

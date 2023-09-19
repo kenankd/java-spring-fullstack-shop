@@ -1,5 +1,6 @@
 package com.greenleaf.shop.controller;
 
+import com.greenleaf.shop.dto.LoginRequest;
 import com.greenleaf.shop.model.User;
 import com.greenleaf.shop.service.UserService;
 import com.greenleaf.shop.util.ApiResponse;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,22 +33,26 @@ public class UserController {
         }
         ResponseEntity<ApiResponse<User>> response = userService.registerUser(user);
         if(response.getBody().isSuccessful())
-            return "redirect:/home";
+            return "redirect:/greenleaf/home";
         errors.rejectValue("email","error.invalid.email","User with given email already registered");
         return "register.html";
     }
 
     @PostMapping("/login/user")
-    public ResponseEntity<Void> showLogin(@RequestParam("email") String email,
-                            @RequestParam("password") String password){
+    public String showLogin(@Valid @ModelAttribute("loginrequest")LoginRequest loginRequest, Errors errors, Model model){
+        if(errors.hasErrors()){
+            log.info("Error in validation: " + errors.getAllErrors().toString());
+            return "login.html";
+        }
         try{
-            userService.authenticate(email,password);
-            return ResponseEntity.ok().build();
+            userService.authenticate(loginRequest.getEmail(),loginRequest.getPassword());
+            return "redirect:/greenleaf/home";
         }
         catch(BadCredentialsException ex){
-            return ResponseEntity.status(HttpStatusCode.valueOf(401)).build();
+            model.addAttribute("errorMessage", "Invalid credentials");
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
+            model.addAttribute("errorMessage", "Something went wrong");
         }
+        return "login.html";
     }
 }
