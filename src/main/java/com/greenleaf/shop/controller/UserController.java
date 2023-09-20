@@ -13,10 +13,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -38,21 +35,5 @@ public class UserController {
         return "register.html";
     }
 
-    @PostMapping("/login/user")
-    public String showLogin(@Valid @ModelAttribute("loginrequest")LoginRequest loginRequest, Errors errors, Model model){
-        if(errors.hasErrors()){
-            log.info("Error in validation: " + errors.getAllErrors().toString());
-            return "login.html";
-        }
-        try{
-            userService.authenticate(loginRequest.getEmail(),loginRequest.getPassword());
-            return "redirect:/greenleaf/home";
-        }
-        catch(BadCredentialsException ex){
-            model.addAttribute("errorMessage", "Invalid credentials");
-        } catch (Exception e) {
-            model.addAttribute("errorMessage", "Something went wrong");
-        }
-        return "login.html";
-    }
+
 }

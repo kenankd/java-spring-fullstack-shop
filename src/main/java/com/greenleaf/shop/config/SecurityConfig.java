@@ -26,11 +26,11 @@ public class SecurityConfig {
                 .requestMatchers("/greenleaf/home").permitAll()
                 .requestMatchers("/greenleaf/register/**").permitAll()
                 .requestMatchers("/greenleaf/login/**").permitAll()
+                .requestMatchers("/greenleaf/logout").permitAll()
                 .requestMatchers( "/assets/css/**").permitAll());
-        http.formLogin(form -> form.loginPage("/greenleaf/login").permitAll().defaultSuccessUrl("/greenleaf/home"))
-            .formLogin(loginConfigurer -> loginConfigurer.loginPage("/login")
-                    .defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").permitAll())
-            .logout(logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/login?logout=true")
+        http.formLogin(form -> form.loginPage("/greenleaf/login").permitAll().defaultSuccessUrl("/greenleaf/home")
+                    .failureUrl("/greenleaf/login?error=true").permitAll())
+            .logout(logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/greenleaf/login?logout=true")
                     .invalidateHttpSession(true).permitAll());
         //http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.authenticationProvider(authenticationProvider);
