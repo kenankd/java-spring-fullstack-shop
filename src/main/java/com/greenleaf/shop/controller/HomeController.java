@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
     @RequestMapping(value = {"/home","","/"})
     public String showHome(){
-        var b= SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var b= SecurityContextHolder.getContext().getAuthentication();
         return "index";
     }
     @RequestMapping("/about")

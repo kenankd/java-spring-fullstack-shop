@@ -27,10 +27,13 @@ public class SecurityConfig {
                 .requestMatchers("/greenleaf/register/**").permitAll()
                 .requestMatchers("/greenleaf/login/**").permitAll()
                 .requestMatchers( "/assets/css/**").permitAll());
-        http.formLogin(form -> form
-                .loginPage("/greenleaf/login").permitAll().defaultSuccessUrl("/greenleaf/home"));
-        //http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
-        http.authenticationProvider(authenticationProvider).httpBasic(Customizer.withDefaults());
+        http.formLogin(form -> form.loginPage("/greenleaf/login").permitAll().defaultSuccessUrl("/greenleaf/home"))
+            .formLogin(loginConfigurer -> loginConfigurer.loginPage("/login")
+                    .defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").permitAll())
+            .logout(logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/login?logout=true")
+                    .invalidateHttpSession(true).permitAll());
+        //http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        http.authenticationProvider(authenticationProvider);
         return http.build();
     }
 }
