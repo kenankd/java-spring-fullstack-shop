@@ -20,13 +20,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(requests -> requests
-                .requestMatchers("/greenleaf/about").authenticated()
-                .requestMatchers("/greenleaf/contact").authenticated()
+                .requestMatchers("/greenleaf/about").permitAll()
+                .requestMatchers("/greenleaf/contact").permitAll()
                 .requestMatchers("/greenleaf/shop").authenticated()
                 .requestMatchers("/greenleaf/home").permitAll()
-                .requestMatchers("/greenleaf/register/**").permitAll()
+                .requestMatchers("/greenleaf/register").permitAll()
                 .requestMatchers("/greenleaf/login/**").permitAll()
-                .requestMatchers("/greenleaf/logout").permitAll()
+                .requestMatchers("/greenleaf/logout").authenticated()
                 .requestMatchers( "/assets/css/**").permitAll());
         http.formLogin(form -> form.loginPage("/greenleaf/login").permitAll().defaultSuccessUrl("/greenleaf/home")
                     .failureUrl("/greenleaf/login?error=true").permitAll())
