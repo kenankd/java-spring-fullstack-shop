@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class Sec implements AuthenticationProvider
+public class Auth implements AuthenticationProvider
 {
     @Autowired
     private UserRepository userRepository;
