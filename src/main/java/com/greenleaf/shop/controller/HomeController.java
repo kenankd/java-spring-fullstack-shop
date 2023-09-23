@@ -1,6 +1,7 @@
 package com.greenleaf.shop.controller;
 
 import com.greenleaf.shop.dto.LoginRequest;
+import com.greenleaf.shop.model.Contact;
 import com.greenleaf.shop.model.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -29,9 +30,14 @@ public class HomeController {
     }
 
     @GetMapping("/contact")
-    public String showContact(){
+    public String showContact(@RequestParam(value="success",required = false) String success,
+                              Model model){
+        if(success!=null)
+            model.addAttribute("success","Contact message sent!");
+        model.addAttribute("contact", new Contact());
         return "contact";
     }
+
 
     @GetMapping("/shop")
     public String showShop(){

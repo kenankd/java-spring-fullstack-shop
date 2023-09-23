@@ -93,28 +93,34 @@ https://templatemo.com/tm-559-zay-shop
     <!-- Start Contact -->
     <div class="container py-5">
         <div class="row py-5">
-            <form class="col-md-9 m-auto" method="post" role="form">
+            <form  class="col-md-9 m-auto" method="post" role="form" th:action="@{/greenleaf/contact/send}" th:object="${contact}">
+                <li class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(success)}"
+                    th:text="${success}"></li>
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">
-                        <label for="inputname">Name</label>
-                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Name">
+                        <label >Name</label>
+                        <input type="text" class="form-control mt-1" th:field="*{name}" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-6 mb-3">
-                        <label for="inputemail">Email</label>
-                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email">
+                        <label >Email</label>
+                        <input type="email" class="form-control mt-1" th:field="*{email}" placeholder="Email">
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="inputsubject">Subject</label>
-                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Subject">
+                    <label >Subject</label>
+                    <input type="text" class="form-control mt-1" th:field="*{subject}" placeholder="Subject">
+                    <span th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <label for="inputmessage">Message</label>
-                    <textarea class="form-control mt-1" id="message" name="message" placeholder="Message" rows="8"></textarea>
+                    <label >Message</label>
+                    <textarea class="form-control mt-1" th:field="*{message}" placeholder="Message" rows="8"></textarea>
+                    <span th:if="${#fields.hasErrors('message')}" th:errors="*{message}" class="text-danger"></span>
                 </div>
                 <div class="row">
                     <div class="col text-end mt-2">
-                        <button type="submit" class="btn btn-success btn-lg px-3">Let’s Talk</button>
+                        <button type="submit" class="btn btn-success btn-lg px-3">Contact us</button>
                     </div>
                 </div>
             </form>

@@ -8,9 +8,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.Generated;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
+@RequiredArgsConstructor
 public class Contact {
     @Id
     @GeneratedValue
@@ -21,14 +23,11 @@ public class Contact {
     private String email;
 
     @NotBlank(message="Name is required")
-    @Size(min=5, max=30,message="Invalid name length")
     private String name;
 
     @NotBlank(message="Subject is required")
-    @Size(min=5,max=30,message="Invalid subject length")
     private String subject;
 
     @NotBlank(message="Can't send blank message")
-    @Size(min=5, max=300,message = "Invalid message length")
     private String message;
 }

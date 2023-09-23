@@ -22,9 +22,10 @@ public class SecurityConfig {
         http.authorizeHttpRequests(requests -> requests
                 .requestMatchers("/greenleaf/about").permitAll()
                 .requestMatchers("/greenleaf/contact").permitAll()
+                .requestMatchers("/greenleaf/contact/send").permitAll()
                 .requestMatchers("/greenleaf/shop").authenticated()
                 .requestMatchers("/greenleaf/home").permitAll()
-                .requestMatchers("/greenleaf/register").permitAll()
+                .requestMatchers("/greenleaf/register/**").permitAll()
                 .requestMatchers("/greenleaf/login/**").permitAll()
                 .requestMatchers("/greenleaf/logout").authenticated()
                 .requestMatchers( "/assets/css/**").permitAll());

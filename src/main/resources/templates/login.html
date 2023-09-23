@@ -29,7 +29,7 @@
     <form th:action="@{/greenleaf/login}"  method="post" class="login-form">
       <div class="form-group">
         <li class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(errorMessage)}"
-            th:text="${errorMessage}" />
+            th:text="${errorMessage}"></li>
         <label>Email</label>
         <input type="email" name="username" id="username" class="login-input" placeholder="Enter your email">
       </div>
