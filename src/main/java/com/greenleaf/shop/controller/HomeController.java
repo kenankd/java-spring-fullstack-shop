@@ -3,8 +3,10 @@ package com.greenleaf.shop.controller;
 import com.greenleaf.shop.dto.LoginRequest;
 import com.greenleaf.shop.model.Contact;
 import com.greenleaf.shop.model.User;
+import com.greenleaf.shop.repository.ProductRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/greenleaf")
 public class HomeController {
+
+    @Autowired
+    private ProductRepository productRepository;
     @GetMapping(value = {"/home","","/"})
     public String showHome(){
         var b= SecurityContextHolder.getContext().getAuthentication();
@@ -40,7 +45,8 @@ public class HomeController {
 
 
     @GetMapping("/shop")
-    public String showShop(){
+    public String showShop(Model model){
+        model.addAttribute("products",productRepository.findAll());
         return "shop";
     }
 
