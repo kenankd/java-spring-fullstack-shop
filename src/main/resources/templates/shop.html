@@ -132,7 +132,7 @@ https://templatemo.com/tm-559-zay-shop
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <a th:href="@{'/shop/' + ${product.id}}" class="h3 text-decoration-none" th:text="${product.name}">Product Name</a>
+                                    <a th:href="@{'/shop/' + ${product.id}}" class="h3 text-decoration-none"  th:text="${product.name}">Product Name</a>
                                     <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                         <li class="pt-2">
                                             <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
@@ -145,7 +145,6 @@ https://templatemo.com/tm-559-zay-shop
                                     <ul class="list-unstyled d-flex justify-content-center mb-1">
                                         <li>
                                             <i th:each="star : ${#numbers.sequence(1, product.rating)}" class="text-warning fa fa-star"></i>
-                                            <i th:each="emptyStar : ${#numbers.sequence(1, 5 - product.rating)}" class="text-muted fa fa-star"></i>
                                         </li>
                                     </ul>
                                     <p class="text-center mb-0" th:text="'$' + ${product.price}">Price</p>
