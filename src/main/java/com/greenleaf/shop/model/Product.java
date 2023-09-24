@@ -27,6 +27,9 @@ public class Product {
     private String imageUrl;
 
     @Column(nullable=false)
+    private String gender;
+
+    @Column(nullable=false)
     @Min(1)
     @Max(5)
     private Double rating;
