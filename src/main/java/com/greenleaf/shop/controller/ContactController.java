@@ -31,4 +31,5 @@ public class ContactController {
         contactRepository.save(contact);
         return "redirect:/greenleaf/contact?success=true";
     }
+
 }
