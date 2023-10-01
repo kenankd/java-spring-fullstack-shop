@@ -66,8 +66,8 @@ https://templatemo.com/tm-559-zay-shop
                             <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul class="collapse show list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Men</a></li>
-                            <li><a class="text-decoration-none" href="#">Women</a></li>
+                            <li><a class="text-decoration-none" th:href="@{'/greenleaf/shop/page/1' + '?gender=men' + '&category=' + ${category}}">Men</a></li>
+                            <li><a class="text-decoration-none" th:href="@{'/greenleaf/shop/page/1' + '?gender=women' + '&category=' + ${category}}"href="#">Women</a></li>
                         </ul>
                     </li>
                     <li class="pb-3">
@@ -99,13 +99,13 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="col-md-6">
                         <ul class="list-inline shop-top-menu pb-3 pt-1">
                             <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">All</a>
+                                <a class="h3 text-dark text-decoration-none mr-3" th:href="@{'/greenleaf/shop/page/1' + '?gender=null' + '&category=' + ${category}}">All</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">Men's</a>
+                                <a class="h3 text-dark text-decoration-none mr-3" th:href="@{'/greenleaf/shop/page/1' + '?gender=men' + '&category=' + ${category}}">Men's</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none" href="#">Women's</a>
+                                <a class="h3 text-dark text-decoration-none" th:href="@{'/greenleaf/shop/page/1' + '?gender=women' + '&category=' + ${category}}">Women's</a>
                             </li>
                         </ul>
                     </div>
@@ -288,6 +288,7 @@ https://templatemo.com/tm-559-zay-shop
     <script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/assets/js/templatemo.js}"></script>
     <script th:src="@{/assets/js/custom.js}"></script>
+
     <!-- End Script -->
 </body>
 

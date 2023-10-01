@@ -16,6 +16,7 @@ public class ProductService {
         int pageSize=6;
         //change this later
         if(gender!=null && gender.equals("null")) gender=null;
+        if(category!=null && category.equals("null")) category=null;
         Pageable pageable=PageRequest.of(pageNum-1,pageSize);
         if(category==null && gender==null)
             return productRepository.findAll(pageable);
@@ -27,6 +28,6 @@ public class ProductService {
         if(gender == null){
             return productRepository.findByCategory(category,pageable);
         }
-        return productRepository.findAll(pageable);
+        return productRepository.findByCategoryAndGender(category,gender,pageable);
     }
 }

@@ -14,4 +14,6 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
     Page<Product> findByGender(String gender, Pageable pageable);
     @Query("SELECT p FROM Product p JOIN p.subtypeCategory c JOIN c.parentCategory c1 WHERE c1.name = :categoryName")
     Page<Product> findByCategory(@Param("categoryName") String categoryName, Pageable pageable);
+    @Query("SELECT p FROM Product p JOIN p.subtypeCategory c JOIN c.parentCategory c1 WHERE c1.name = :categoryName AND p.gender=:gender")
+    Page<Product> findByCategoryAndGender(@Param("categoryName") String categoryName, @Param("gender") String gender,Pageable pageable);
 }
