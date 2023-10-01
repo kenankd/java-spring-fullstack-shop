@@ -21,10 +21,10 @@
 <div th:replace="~{header :: headerFragment}">...</div>
 <!-- Header closed -->
 
-<div class="container">
+<div class="container" style="margin-bottom:20px;">
   <div class="login-container">
     <h2>Log in</h2>
-    <form th:action="@{/greenleaf/login}"  method="post" class="login-form">
+    <form th:action="@{/greenleaf/login}"  method="post" class="login-form"  >
       <li class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(errorMessage)}"
           th:text="${errorMessage}"></li>
       <div class="form-group">
@@ -37,7 +37,7 @@
       </div>
       <button type="submit" class="login-button">Log In</button>
     </form>
-    <p>Not registered yet? <a class="registration-link" th:href="@{/greenleaf/register}">Register</a></p>
+    <p>Not registered yet? <a class="registration-link"  th:href="@{/greenleaf/register}">Register</a></p>
   </div>
 </div>
 <div th:replace="~{footer :: footer}">...</div>
