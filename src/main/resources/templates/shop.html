@@ -86,9 +86,9 @@ https://templatemo.com/tm-559-zay-shop
                             <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Bag</a></li>
-                            <li><a class="text-decoration-none" href="#">Sweather</a></li>
-                            <li><a class="text-decoration-none" href="#">Sunglass</a></li>
+                            <li><a class="text-decoration-none" href="/greenleaf/shop/page/1?category=clothing">Clothing</a></li>
+                            <li><a class="text-decoration-none" href="/greenleaf/shop/page/1?category=footwear">Footwear</a></li>
+                            <li><a class="text-decoration-none" href="/greenleaf/shop/page/1?category=accessories">Accessories</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -157,16 +157,16 @@ https://templatemo.com/tm-559-zay-shop
                     <ul class="pagination pagination-lg justify-content-end">
                         <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled' : ''">
                             <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
-                               th:href="@{'/greenleaf/shop/page/' + ${currentPage - 1}}" aria-disabled="${currentPage == 1}">Previous</a>
+                               th:href="@{'/greenleaf/shop/page/' + ${currentPage - 1} + '?gender=' + ${gender} + '&category=' + ${category}}" aria-disabled="${currentPage == 1}">Previous</a>
                         </li>
                         <li class="page-item" th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
                             <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
-                               th:href="@{'/greenleaf/shop/page/' + ${pageNumber}}" th:text="${pageNumber}"
+                               th:href="@{'/greenleaf/shop/page/' + ${pageNumber} + '?gender=' + ${gender} + '&category=' + ${category}}" th:text="${pageNumber}"
                                th:classappend="${pageNumber == currentPage} ? 'active' : ''"></a>
                         </li>
                         <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled' : ''">
                             <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
-                               th:href="@{'/greenleaf/shop/page/' + ${currentPage + 1}}" aria-disabled="${currentPage == totalPages}">Next</a>
+                               th:href="@{'/greenleaf/shop/page/' + ${currentPage + 1} + '?gender=' + ${gender} + '&category=' + ${category}}" aria-disabled="${currentPage == totalPages}">Next</a>
                         </li>
                     </ul>
                 </div>

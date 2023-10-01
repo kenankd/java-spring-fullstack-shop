@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends JpaRepository<Product,Integer> {
     Page<Product> findAll(Pageable pageable);
     Page<Product> findByGender(String gender, Pageable pageable);
-    @Query("SELECT * from product p INNER JOIN category c ON p.subtype_category_id=c.id INNER JOIN category c1 ON c.parent_id=c1.id WHERE c1.name= :categoryName;")
+    @Query("SELECT p FROM Product p JOIN p.subtypeCategory c JOIN c.parentCategory c1 WHERE c1.name = :categoryName")
     Page<Product> findByCategory(@Param("categoryName") String categoryName, Pageable pageable);
 }

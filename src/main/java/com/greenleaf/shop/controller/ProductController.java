@@ -24,11 +24,14 @@ public class ProductController {
                            @RequestParam(name = "category", required = false) String category,
                            @RequestParam(name = "gender", required = false) String gender,
                            Model model){
+
         Page<Product> productPage = productService.findProducts(pageNum,category,gender);
         List<Product> products = productPage.getContent();
         model.addAttribute("products",products);
         model.addAttribute("totalPages",productPage.getTotalPages());
         model.addAttribute("currentPage",pageNum);
+        model.addAttribute("category",category);
+        model.addAttribute("gender",gender);
         return "shop";
     }
 }
