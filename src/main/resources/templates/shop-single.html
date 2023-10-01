@@ -71,18 +71,18 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h1 class="h2">Active Wear</h1>
-                            <p class="h3 py-2">$25.00</p>
+                            <h1 class="h2" th:text="${product.name}"></h1>
+                            <p class="h3 py-2" th:text="'$' + ${product.price}"></p>
                             <p class="py-2">
                                 <i th:each="star : ${#numbers.sequence(1, product.rating)}" class="text-warning fa fa-star"></i>
                                 <span class="list-inline-item text-dark" th:text="'Rating ' + ${product.rating}"></span>
                             </p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <h6>Brand:</h6>
+                                    <h6>For: </h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>Easy Wear</strong></p>
+                                    <p class="text-muted"><strong th:text="${product.gender}"></strong></p>
                                 </li>
                             </ul>
 
