@@ -20,14 +20,10 @@ public class ProductService {
         Pageable pageable=PageRequest.of(pageNum-1,pageSize);
         if(category==null && gender==null)
             return productRepository.findAll(pageable);
-        if(category == null){
-            //turn women to Women for eg because of database
-            String gender1 = gender.substring(0, 1).toUpperCase() + gender.substring(1).toLowerCase();
-            return productRepository.findByGender(gender1,pageable);
-        }
-        if(gender == null){
+        if(category == null)
+            return productRepository.findByGender(gender,pageable);
+        if(gender == null)
             return productRepository.findByCategory(category,pageable);
-        }
         return productRepository.findByCategoryAndGender(category,gender,pageable);
     }
 }

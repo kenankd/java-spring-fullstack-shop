@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 public class Product {
@@ -38,10 +40,8 @@ public class Product {
     @JoinColumn(name = "subtype_category_id")
     private Category subtypeCategory;
 
+    @OneToMany(mappedBy = "product")
+    @Column
+    private List<CartItem> cartItems;
 
-
-    // Getter for main category
-
-
-    // Getters and setters
 }
