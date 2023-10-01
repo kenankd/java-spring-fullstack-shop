@@ -2,11 +2,14 @@ package com.greenleaf.shop.controller;
 
 import com.greenleaf.shop.dto.LoginRequest;
 import com.greenleaf.shop.model.Contact;
+import com.greenleaf.shop.model.Product;
 import com.greenleaf.shop.model.User;
 import com.greenleaf.shop.repository.ProductRepository;
+import com.greenleaf.shop.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,12 +18,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/greenleaf")
 public class HomeController {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ProductService productService;
     @GetMapping(value = {"/home","","/"})
     public String showHome(){
         var b= SecurityContextHolder.getContext().getAuthentication();
@@ -43,8 +50,10 @@ public class HomeController {
 
     @GetMapping("/shop/page/{pageNum}")
     public String showShop(@PathVariable("pageNum") Integer pageNum, Model model){
-        model.addAttribute("products",productRepository.findAll());
-        model.addAttribute("totalPages",4);
+        Page<Product> productPage = productService.findProducts(pageNum);
+        List<Product> products = productPage.getContent();
+        model.addAttribute("products",products);
+        model.addAttribute("totalPages",productPage.getTotalPages());
         model.addAttribute("currentPage",pageNum);
         return "shop";
     }
