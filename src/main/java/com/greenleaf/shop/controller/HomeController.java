@@ -26,8 +26,7 @@ public class HomeController {
 
     @Autowired
     private ProductRepository productRepository;
-    @Autowired
-    private ProductService productService;
+
     @GetMapping(value = {"/home","","/"})
     public String showHome(){
         var b= SecurityContextHolder.getContext().getAuthentication();
@@ -48,15 +47,7 @@ public class HomeController {
     }
 
 
-    @GetMapping("/shop/page/{pageNum}")
-    public String showShop(@PathVariable("pageNum") Integer pageNum, Model model){
-        Page<Product> productPage = productService.findProducts(pageNum);
-        List<Product> products = productPage.getContent();
-        model.addAttribute("products",products);
-        model.addAttribute("totalPages",productPage.getTotalPages());
-        model.addAttribute("currentPage",pageNum);
-        return "shop";
-    }
+
 
     @RequestMapping(value = "/login", method= {RequestMethod.POST,RequestMethod.GET})
     public String showLogin(@RequestParam(value = "error", required = false) String error,
