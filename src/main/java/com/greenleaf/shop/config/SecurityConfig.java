@@ -23,7 +23,7 @@ public class SecurityConfig {
                 .requestMatchers("/greenleaf/about").permitAll()
                 .requestMatchers("/greenleaf/contact").permitAll()
                 .requestMatchers("/greenleaf/contact/send").permitAll()
-                .requestMatchers("/greenleaf/shop").authenticated()
+                .requestMatchers("/greenleaf/shop/**").authenticated()
                 .requestMatchers("/greenleaf/home").permitAll()
                 .requestMatchers("/greenleaf/register/**").permitAll()
                 .requestMatchers("/greenleaf/login/**").permitAll()
