@@ -1,6 +1,7 @@
 package com.greenleaf.shop.controller;
 
 import com.greenleaf.shop.model.Product;
+import com.greenleaf.shop.repository.ProductRepository;
 import com.greenleaf.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,12 +20,13 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private ProductRepository productRepository;
     @GetMapping("/shop/page/{pageNum}")
     public String showShop(@PathVariable("pageNum") Integer pageNum,
                            @RequestParam(name = "category", required = false) String category,
                            @RequestParam(name = "gender", required = false) String gender,
                            Model model){
-
         Page<Product> productPage = productService.findProducts(pageNum,category,gender);
         List<Product> products = productPage.getContent();
         model.addAttribute("products",products);
@@ -34,5 +36,12 @@ public class ProductController {
         model.addAttribute("gender",gender);
         return "shop";
     }
+
+    @GetMapping("/shop/details")
+    public String showProductDetails(@RequestParam("productId") Integer productId, Model model){
+        model.addAttribute("product",productRepository.findById(productId).get());
+        return "shop-single";
+    }
+
 }
 
