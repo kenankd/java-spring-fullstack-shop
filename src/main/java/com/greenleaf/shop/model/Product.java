@@ -41,7 +41,6 @@ public class Product {
     private Category subtypeCategory;
 
     @OneToMany(mappedBy = "product")
-    @Column
     private List<CartItem> cartItems;
 
 }

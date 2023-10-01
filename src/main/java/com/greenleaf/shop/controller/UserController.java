@@ -30,7 +30,7 @@ public class UserController {
         }
         ResponseEntity<ApiResponse<User>> response = userService.registerUser(user);
         if(response.getBody().isSuccessful())
-            return "redirect:/greenleaf/home";
+            return "redirect:/greenleaf/login?register=true";
         errors.rejectValue("email","error.invalid.email","User with given email already registered");
         return "register.html";
     }

@@ -29,7 +29,6 @@ public class HomeController {
 
     @GetMapping(value = {"/home","","/"})
     public String showHome(){
-        var b= SecurityContextHolder.getContext().getAuthentication();
         return "index";
     }
     @GetMapping("/about")
@@ -45,10 +44,6 @@ public class HomeController {
         model.addAttribute("contact", new Contact());
         return "contact";
     }
-
-
-
-
     @RequestMapping(value = "/login", method= {RequestMethod.POST,RequestMethod.GET})
     public String showLogin(@RequestParam(value = "error", required = false) String error,
                             @RequestParam(value = "logout", required = false) String logout,
@@ -58,14 +53,13 @@ public class HomeController {
         if (error != null) {
             errorMessage = "Username or Password is incorrect !!";
         } else if (logout != null) {
-            errorMessage = "You have been successfully logged out !!";
+            errorMessage = "You have been successfully logged out!";
         } else if (register != null) {
-            errorMessage = "You registration successful. Login with registered credentials !!";
+            errorMessage = "You registered successfully. Login with registered credentials!";
         }
         model.addAttribute("errorMessage", errorMessage);
         return "login.html";
     }
-
 
     @GetMapping("/register")
     public String showRegister(Model model){
@@ -78,7 +72,7 @@ public class HomeController {
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/login?logout=true";
+        return "redirect:/greenleaf/login?logout=true";
     }
 
 

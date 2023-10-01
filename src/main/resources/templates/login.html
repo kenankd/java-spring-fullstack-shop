@@ -6,11 +6,10 @@
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/templatemo.css">
   <link rel="stylesheet" href="/assets/css/custom.css">
-
-  <!-- Load fonts style after rendering the layout styles -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
   <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
   <link rel="stylesheet" th:href="@{/assets/css/styles.css}">
+  <!-- Load fonts style after rendering the layout styles -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
   <title>Login</title>
 </head>
 <body>
@@ -25,11 +24,10 @@
 <div class="container">
   <div class="login-container">
     <h2>Log in</h2>
-    </div>
     <form th:action="@{/greenleaf/login}"  method="post" class="login-form">
+      <li class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(errorMessage)}"
+          th:text="${errorMessage}"></li>
       <div class="form-group">
-        <li class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(errorMessage)}"
-            th:text="${errorMessage}"></li>
         <label>Email</label>
         <input type="email" name="username" id="username" class="login-input" placeholder="Enter your email">
       </div>
@@ -37,7 +35,6 @@
         <label>Password</label>
         <input type="password" name="password" id="password" class="login-input" placeholder="Enter your password">
       </div>
-
       <button type="submit" class="login-button">Log In</button>
     </form>
     <p>Not registered yet? <a class="registration-link" th:href="@{/greenleaf/register}">Register</a></p>
