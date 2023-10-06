@@ -28,7 +28,7 @@ public class SecurityConfig {
                 .requestMatchers("/greenleaf/register/**").permitAll()
                 .requestMatchers("/greenleaf/login/**").permitAll()
                 .requestMatchers("/greenleaf/logout").authenticated()
-                .requestMatchers( "/assets/css/**").permitAll());
+                .requestMatchers( "/assets/**").permitAll());
         http.formLogin(form -> form.loginPage("/greenleaf/login").permitAll().defaultSuccessUrl("/greenleaf/home")
                     .failureUrl("/greenleaf/login?error=true").permitAll())
             .logout(logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/greenleaf/login?logout=true")
