@@ -40,6 +40,13 @@ public class User implements UserDetails, Serializable {
     @Size(min=5,message="Password must be between 5 and 15 characters long")
     private String password;
 
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+
+    @OneToMany(mappedBy = "user")
+    private List<ShoppingCart> shoppingCarts;
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.emptyList();

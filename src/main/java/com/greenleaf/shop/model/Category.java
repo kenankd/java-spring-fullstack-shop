@@ -3,6 +3,8 @@ package com.greenleaf.shop.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 public class Category {
@@ -16,4 +18,7 @@ public class Category {
     @ManyToOne
     @JoinColumn(name = "parent_id",nullable = true)
     private Category parentCategory;
+
+    @OneToMany(mappedBy = "subtypeCategory")
+    private List<Product> products;
 }

@@ -5,8 +5,11 @@ import lombok.Data;
 
 import java.util.List;
 
+
 @Entity
-public class ShoppingCart {
+@Data
+@Table(name="user_order")
+public class Order {
     @Id
     @GeneratedValue
     private Long id;
@@ -15,7 +18,6 @@ public class ShoppingCart {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "cart")
-    private List<CartItem> cartItems;
-
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems;
 }

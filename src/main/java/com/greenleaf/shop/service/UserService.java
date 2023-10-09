@@ -41,8 +41,5 @@ public class UserService {
     public void authenticate(String email, String password) {
         var authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email,password));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        var b= SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        var a=10;
-        //var user = userRepository.findByEmail(email).orElseThrow();
     }
 }

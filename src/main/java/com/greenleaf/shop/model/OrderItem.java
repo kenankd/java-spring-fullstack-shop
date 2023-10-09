@@ -5,18 +5,17 @@ import lombok.Data;
 
 @Entity
 @Data
-public class CartItem {
+public class OrderItem {
     @Id
     @GeneratedValue
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private ShoppingCart cart;
 
     private int quantity;
 
