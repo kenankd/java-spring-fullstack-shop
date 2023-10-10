@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Zay Shop eCommerce HTML CSS Template</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/templatemo.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+
+  <!-- Load fonts style after rendering the layout styles -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+  <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
+</head>
+<body>
+  <!-- Start Top Nav -->
+  <div th:replace="~{topnav :: topNavFragment}">...</div>
+  <!-- Close Top Nav -->
+
+  <!-- Header -->
+  <div th:replace="~{header :: headerFragment}">...</div>
+  <!-- Close Header -->
+
+  <div class="container">
+    <h2>Your Shopping Cart</h2>
+    <div th:if="${not #lists.isEmpty(cartItems)}">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Size</th>
+          <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${cartItems}">
+          <td>
+            <img th:src="${item.product.imageUrl}" alt="Product Image" class="product-image">
+            <span th:text="${item.product.name}"></span>
+          </td>
+          <td th:text="${item.product.price}"></td>
+          <td th:text="${item.quantity}"></td>
+          <td th:text="${item.size}"></td>
+          <td th:text="${item.product.price * item.quantity}"></td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="total-price">
+        <h4>Total: $<span th:text="${totalPrice}"></span></h4>
+      </div>
+      <button class="btn btn-primary">Proceed to Checkout</button>
+    </div>
+    <div th:if="${#lists.isEmpty(cartItems)}">
+      <p>Your cart is empty.</p>
+    </div>
+  </div>
+
+  <!-- Start Footer -->
+  <div th:replace="~{footer :: footer}">...</div>
+  <!-- End Footer -->
+
+  <!-- Start Script -->
+  <script src="assets/js/jquery-1.11.0.min.js"></script>
+  <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/templatemo.js"></script>
+  <script src="assets/js/custom.js"></script>
+  <!-- End Script -->
+</body>
+</html>

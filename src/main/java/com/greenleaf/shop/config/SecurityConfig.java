@@ -26,6 +26,7 @@ public class SecurityConfig {
                 .requestMatchers("/greenleaf/shop/**").authenticated()
                 .requestMatchers("/greenleaf/home").permitAll()
                 .requestMatchers("/greenleaf/register/**").permitAll()
+                .requestMatchers("/greenleaf/cart/**").authenticated()
                 .requestMatchers("/greenleaf/login/**").permitAll()
                 .requestMatchers("/greenleaf/logout").authenticated()
                 .requestMatchers( "/assets/**").permitAll());

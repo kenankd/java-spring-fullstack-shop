@@ -96,8 +96,9 @@ https://templatemo.com/tm-559-zay-shop
                                 </li>
                             </ul>
 
-                            <form action="" method="GET">
+                            <form th:action="@{/greenleaf/cart/add}" method="post">
                                 <input type="hidden" name="product-title" value="Activewear">
+                                <input type="hidden" name="product-id" th:value="${product.id}">
                                 <div class="row">
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
@@ -127,7 +128,7 @@ https://templatemo.com/tm-559-zay-shop
                                         <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
                                     </div>
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Add To Cart</button>
+                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard" >Add To Cart</button>
                                     </div>
                                 </div>
                             </form>
