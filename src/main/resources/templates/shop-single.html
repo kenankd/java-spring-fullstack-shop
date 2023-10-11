@@ -98,7 +98,7 @@ https://templatemo.com/tm-559-zay-shop
 
                             <form th:action="@{/greenleaf/cart/add}" method="post">
                                 <input type="hidden" name="product-title" value="Activewear">
-                                <input type="hidden" name="product-id" th:value="${product.id}">
+                                <input type="hidden" name="product-id" value=product.id>
                                 <div class="row">
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
