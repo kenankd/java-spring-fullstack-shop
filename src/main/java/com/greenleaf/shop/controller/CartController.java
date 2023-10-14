@@ -40,7 +40,7 @@ public class CartController {
     }
 
     @PostMapping("/cart/add")
-        public String addToCart(@RequestParam("productId") Integer id){
+        public String addToCart(@RequestParam("productId") Integer id, Model model){
         Product product = productRepository.findById(id).get();
         ShoppingCart shoppingCart = cartService.getMyShoppingCart();
         log.info(product.getName() + shoppingCart.getUser().getName());
