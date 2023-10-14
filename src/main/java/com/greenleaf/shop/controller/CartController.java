@@ -8,6 +8,7 @@ import com.greenleaf.shop.repository.CartItemRepository;
 import com.greenleaf.shop.repository.CartRepository;
 import com.greenleaf.shop.repository.ProductRepository;
 import com.greenleaf.shop.service.CartService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@Slf4j
 @RequestMapping("/greenleaf")
 public class CartController {
 
@@ -38,16 +40,16 @@ public class CartController {
     }
 
     @PostMapping("/cart/add")
-    public String addToCart(@RequestParam("product-id") String id){
-        Product product = productRepository.findById(Integer.parseInt(id)).get();
+        public String addToCart(@RequestParam("productId") Integer id){
+        Product product = productRepository.findById(id).get();
         ShoppingCart shoppingCart = cartService.getMyShoppingCart();
+        log.info(product.getName() + shoppingCart.getUser().getName());
         CartItem cartItem = new CartItem();
         cartItem.setCart(shoppingCart);
         cartItem.setProduct(product);
         cartItem.setSize("S");
         cartItem.setQuantity(1);
         cartItemRepository.save(cartItem);
-        return "redirect:/greenleaf/shop/details";
-
+        return "redirect:/greenleaf/shop/details?productId=" + id;
     }
 }
