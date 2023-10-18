@@ -50,6 +50,6 @@ public class CartController {
         cartItem.setSize("S");
         cartItem.setQuantity(1);
         cartItemRepository.save(cartItem);
-        return "redirect:/greenleaf/shop/details?productId=" + id;
+        return "redirect:/greenleaf/shop/details?productId=" +id;
     }
 }
