@@ -18,6 +18,7 @@ import java.util.function.Function;
 public class JwtService {
     private static final String SECRET_KEY = "5ol+f64sQPhyRdsIAEBz7PzMJxgVPpvnBam2lOa9vDfV5+v23lPf/L2ptiRwO1jb";
     public String extractUsername(String token) {
+
         return extractClaim(token,Claims::getSubject);
     }
     public <T> T extractClaim(String token, Function<Claims,T> claimsResolver){
@@ -25,6 +26,7 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
     public String generateToken(UserDetails userDetails){
+
         return generateToken(new HashMap<>(),userDetails);
     }
     public boolean isTokenValid(String token, UserDetails userDetails){

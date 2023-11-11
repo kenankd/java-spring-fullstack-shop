@@ -16,13 +16,6 @@ public class ContactController {
     @Autowired
     private ContactRepository contactRepository;
 
-    /**
-     * handle database error
-     * @param contact
-     * @param errors
-     * @return
-     */
-
     @PostMapping("/contact/send")
     public String sendMessage(@Valid @ModelAttribute("contact") Contact contact, Errors errors){
         if(errors.hasErrors()){
